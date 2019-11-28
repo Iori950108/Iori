@@ -1,0 +1,95 @@
+
+create database ecsite;
+
+use ecsite;
+
+create table meisai
+(mei_id int primary key,user_id int,pro_cd int,ko_date date,mei_price int);
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| mei_id    | int(11) | NO   | PRI | NULL    |       |
+| user_id   | int(11) | YES  |     | NULL    |       |
+| pro_cd    | int(11) | YES  |     | NULL    |       |
+| ko_date   | date    | YES  |     | NULL    |       |
+| mei_price | int(11) | YES  |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+
+create table user
+(user_id int primary key,user_name varchar(20),login_cd varchar(20),login_pw varchar(20));
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| user_id   | int(11)     | NO   | PRI | NULL    |       |
+| user_name | varchar(20) | YES  |     | NULL    |       |
+| login_cd  | varchar(20) | YES  |     | NULL    |       |
+| login_pw  | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+create table product
+(pro_cd int primary key,pro_name varchar(20),stock_no int,pro_price int,
+cat_id int,pro_img varchar(20),pro_msg varchar(20));
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| pro_cd    | int(11)     | NO   | PRI | NULL    |       |
+| pro_name  | varchar(20) | YES  |     | NULL    |       |
+| stock_no  | int(11)     | YES  |     | NULL    |       |
+| pro_price | int(11)     | YES  |     | NULL    |       |
+| cat_id    | int(11)     | YES  |     | NULL    |       |
+| pro_img   | varchar(20) | YES  |     | NULL    |       |
+| pro_msg   | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+create table category
+(cat_id int primary key,cat_name varchar(20));
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cat_id   | int(11)     | NO   | PRI | NULL    |       |
+| cat_name | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+insert into meisai values (1,null,null,20191125,null);
++--------+---------+--------+------------+-----------+
+| mei_id | user_id | pro_cd | ko_date    | mei_price |
++--------+---------+--------+------------+-----------+
+|      1 |    NULL |   NULL | 2019-11-25 |      NULL |
++--------+---------+--------+------------+-----------+
+
+insert into user values (1000,"太郎","taro","pass");
+insert into user values (1001,"花子","hanako","pass1");
++---------+-----------+----------+----------+
+| user_id | user_name | login_cd | login_pw |
++---------+-----------+----------+----------+
+|    1000 | 太郎      | taro     | pass     |
+|    1001 | 花子      | hanako   | pass1    |
++---------+-----------+----------+----------+
+
+insert into product values (1001,"炊飯器",1,14800,1,"null","おいしくご飯が炊けます");
+insert into product values (1002,"パソコン",3,99800,1,"null","高スペックモデルです");
+insert into product values (1003,"豚肉",30,350,2,"null","アメリカ産バラ肉");
+insert into product values (1004,"ボールペン",100,120,3,"null","書き心地サラサラ");
+insert into product values (1005,"牛肉",50,500,2,"null","国産和牛すき焼き用");
++--------+------------+----------+-----------+--------+---------+------------------------+
+| pro_cd | pro_name   | stock_no | pro_price | cat_id | pro_img | pro_msg                |
++--------+------------+----------+-----------+--------+---------+------------------------+
+|   1001 | 炊飯器     |        1 |     14800 |      1 | null    | おいしくご飯が炊けます |
+|   1002 | パソコン   |        3 |     99800 |      1 | null    | 高スペックモデルです   |
+|   1003 | 豚肉       |       30 |       350 |      2 | null    | アメリカ産バラ肉       |
+|   1004 | ボールペン |      100 |       120 |      3 | null    | 書き心地サラサラ       |
+|   1005 | 牛肉       |       50 |       500 |      2 | null    | 国産和牛すき焼き用     |
++--------+------------+----------+-----------+--------+---------+------------------------+
+
+
+insert into category (cat_id,cat_name) values (1, "家電"),(2,"肉"),(3,"文房具");
++--------+----------+
+| cat_id | cat_name |
++--------+----------+
+|      1 | 家電     |
+|      2 | 肉       |
+|      3 | 文房具   |
++--------+----------+
+
+select * from meisai;
+
